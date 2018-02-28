@@ -17,6 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/teste', function (Request $request) {
-    return 'teste';
+Route::middleware('api')->group(function() {
+
+    Route::post('cadastrar', ['uses' => 'API\\UserController@store'])->name('user.store');
+
+    Route::get('agenda/{id}', ['uses' => 'API\\AgendaController@show'])->name('agenda.show');
+
+
+    //Route::post('cadastrar', ['uses' => 'API\UserController@store'])->name('user.cadastrar');
+
 });
