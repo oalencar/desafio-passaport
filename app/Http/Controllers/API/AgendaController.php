@@ -36,11 +36,15 @@ class AgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Agenda $agenda)
+    public function show($id)
     {
+        $agenda = Agenda::findOrFail($id);
+        $contatos = $agenda->contatos;
+
         try {
             return response()->json([
                 'titulo' => $agenda->titulo,
+                'contatos' => $agenda->contatos
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

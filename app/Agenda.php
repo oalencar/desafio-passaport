@@ -15,4 +15,9 @@ class Agenda extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function contatos()
+    {
+        return $this->hasMany(Contato::class);
+    }
 }

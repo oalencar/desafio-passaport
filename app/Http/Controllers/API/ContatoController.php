@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Contato;
 
 class ContatoController extends Controller
 {
@@ -49,16 +50,6 @@ class ContatoController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +60,22 @@ class ContatoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contato = Contato::findOrFail($id);
+
+        try {
+            $contato->nome = $request->get('nome');
+            $contato->telefone = $request->get('telefone');
+            $contato->save();
+            return response()->json([
+                'status' => 'success',
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()],
+                400
+            );
+        }
     }
 
     /**
@@ -80,6 +86,19 @@ class ContatoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contato = Contato::findOrFail($id);
+
+        try {
+            $contato->delete();
+            return response()->json([
+                'status' => 'success',
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()],
+                400
+            );
+        }
     }
 }
