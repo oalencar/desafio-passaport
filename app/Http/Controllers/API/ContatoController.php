@@ -36,7 +36,21 @@ class ContatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contato = new Contato();
+
+        try {
+            $newContato = $contato->create($request->all());
+            return response()->json([
+                'status' => 'success',
+                'contato' => $newContato
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()],
+                400
+            );
+        }
     }
 
     /**

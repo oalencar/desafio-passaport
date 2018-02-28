@@ -45,7 +45,7 @@ class UserController extends Controller
             ]);
 
             $newAgenda = Agenda::create([
-                'titulo' => '',
+                'titulo' => 'Agenda de '. $newUser->name,
                 'user_id' => $newUser->id
             ]);
 

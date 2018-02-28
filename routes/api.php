@@ -24,8 +24,8 @@ Route::middleware('api')->group(function() {
     Route::get('agenda/{id}', ['uses' => 'API\\AgendaController@show'])->name('agenda.show');
 
     Route::post('contato/update/{id}', ['uses' => 'API\\ContatoController@update'])->name('contato.update');
-
     Route::get('contato/delete/{id}', ['uses' => 'API\\ContatoController@destroy'])->name('contato.delete');
+    Route::post('contato/create', ['uses' => 'API\\ContatoController@store'])->name('contato.store');
 
     //Route::post('cadastrar', ['uses' => 'API\UserController@store'])->name('user.cadastrar');
 

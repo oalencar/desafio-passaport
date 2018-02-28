@@ -8,7 +8,8 @@ class Contato extends Model
 {
     protected $fillable = [
         'nome',
-        'telefone'
+        'telefone',
+        'agenda_id'
     ];
 
     public function agenda()
